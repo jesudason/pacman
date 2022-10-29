@@ -1,29 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
-
-function Command({ command }) {
-  const { input, verified } = command;
-
-  const text = verified ? input : `!error ${input}`;
-  console.log("text", text);
-  console.log("verified", verified);
-  const commandItem = `<p data-testid="command">${text}</p>`;
-
-  return commandItem;
-}
+import Command from "./components/Command";
 
 function App() {
   const commands = [
-    { input: "PLACE 0,0,NORTH", verified: true },
-    { input: "PLACE 1,2,EAST", verified: true },
-    { input: "PLACE 10,0,SOUTH", verified: false },
-    { input: "LEFT", verified: true },
-    { input: "REPORT", verified: true },
-    { input: "PLACE 0,0,NOdRTH", verified: false },
-    { input: "PLACE 0,3,east", verified: false },
-    { input: "MOVE", verified: true },
-    { input: "MOdsfnklsVE", verified: false },
-    { input: "RIGHT", verified: true },
+    { id: 1, input: "PLACE 0,0,NORTH", verified: true },
+    { id: 2, input: "PLACE 1,2,EAST", verified: true },
+    { id: 3, input: "PLACE 10,0,SOUTH", verified: false },
+    { id: 4, input: "LEFT", verified: true },
+    { id: 5, input: "REPORT", verified: true },
+    { id: 6, input: "PLACE 0,0,NOdRTH", verified: false },
+    { id: 7, input: "PLACE 0,3,east", verified: false },
+    { id: 8, input: "MOVE", verified: true },
+    { id: 9, input: "MOdsfnklsVE", verified: false },
+    { id: 10, input: "RIGHT", verified: true },
   ];
 
   return (
