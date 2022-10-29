@@ -8,22 +8,7 @@ function VerifyInput(input) {
   ) {
     validity = true;
   } else if (input && input.startsWith("PLACE")) {
-    validity = splitPlaceCommand(input);
-  }
-  return validity;
-}
-
-function splitPlaceCommand(input) {
-  const splitCommand = input.split(" ");
-
-  if (splitCommand.length == 2) {
-    const inputData = splitCommand[1].split(",");
-    if (inputData.length !== 3) {
-      return false;
-    }
-    if (!["NORTH", "SOUTH", "WEST", "EAST"].includes(inputData[2])) {
-      return false;
-    }
+    const inputData = splitPlaceCommand(input);
 
     if (
       inputData.length === 3 &&
@@ -33,12 +18,21 @@ function splitPlaceCommand(input) {
       inputData[1] < 5 &&
       inputData[1] > -1
     ) {
-      return true;
+      validity = true;
     } else {
-      return false;
+      validity = false;
     }
+  }
+  return validity;
+}
+
+function splitPlaceCommand(input) {
+  const splitCommand = input.split(" ");
+
+  if (splitCommand.length == 2) {
+    return splitCommand[1].split(",");
   } else {
-    return false;
+    return null;
   }
 }
 
