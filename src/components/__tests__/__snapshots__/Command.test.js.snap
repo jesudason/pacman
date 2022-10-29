@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`Command history matches snapshot 1`] = `
 <p
   className="command-history"
   data-testid="command-8"
