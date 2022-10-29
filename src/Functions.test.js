@@ -61,4 +61,8 @@ describe("Command verification", () => {
     const input = "PLACE 4,3,WEST";
     expect(VerifyInput(input)).toBe(true);
   });
+  test("fails if wrong object types are received", () => {
+    const input = "PLACE '2','1',EAST";
+    expect(VerifyInput(input)).toBe(false);
+  });
 });

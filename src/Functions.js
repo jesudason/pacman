@@ -1,6 +1,14 @@
-function VerifyInput(input) {
+function VerifyInput(input, state) {
   let validity = false;
+  console.log("state", state);
   if (
+    input &&
+    input.startsWith("PLACE") === false &&
+    state &&
+    state.placed === false
+  ) {
+    validity = false;
+  } else if (
     input === "MOVE" ||
     input === "REPORT" ||
     input === "LEFT" ||
