@@ -1,26 +1,72 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Command from "./components/Command";
+import { useState } from "react";
+import React from "react";
 
-function App() {
-  const commands = [
-    { id: 1, input: "PLACE 0,0,NORTH", verified: true },
-    { id: 2, input: "PLACE 1,2,EAST", verified: true },
-    { id: 3, input: "PLACE 10,0,SOUTH", verified: false },
-    { id: 4, input: "LEFT", verified: true },
-    { id: 5, input: "REPORT", verified: true },
-    { id: 6, input: "PLACE 0,0,NOdRTH", verified: false },
-    { id: 7, input: "PLACE 0,3,east", verified: false },
-    { id: 8, input: "MOVE", verified: true },
-    { id: 9, input: "MOdsfnklsVE", verified: false },
-    { id: 10, input: "RIGHT", verified: true },
-  ];
+function Input(props) {
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.handleInput(input);
+    return;
+  };
 
   return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Enter your command:
+        <input
+          id="command-input"
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commands: [],
+    };
+  }
+
+  render() {
+    const handleInput = (input) => {
+      this.setState(
+        {
+          commands: [
+            ...this.state.commands,
+            ...[{ input: input, verified: true }],
+          ],
+        },
+        () => {
+          console.log("state", this.state);
+        }
+      );
+    };
+    return (
+      <div>
+        <Input handleInput={handleInput} />
+        <div id="command-history">
+          {this.state.commands.map((command, index) => {
+            return <Command key={index} command={command} id={index} />;
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+
+function App() {
+  return (
     <div className="App">
-      {commands.map((command, index) => {
-        return <Command command={command} key={index} />;
-      })}
+      <Board />
     </div>
   );
 }
