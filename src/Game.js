@@ -5,6 +5,24 @@ import React from "react";
 import Place from "./functions/Place";
 import Report from "./functions/Report";
 
+function Move(state) {
+  const { position, direction } = state.placement;
+
+  if (direction === "NORTH") {
+    return ["x", 1];
+  }
+  if (direction === "SOUTH") {
+    return ["x", -1];
+  }
+  if (direction === "EAST") {
+    return ["y", 1];
+  }
+  if (direction === "WEST") {
+    return ["y", -1];
+  }
+  return "error";
+}
+
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +38,8 @@ export default class Game extends React.Component {
 
   runCommand = (input) => {
     if (input === "MOVE") {
-      return;
+      const move = Move(this.state);
+      return this.handleMove(move);
     }
 
     if (input === "REPORT") {
@@ -42,6 +61,26 @@ export default class Game extends React.Component {
 
     // splitPlaceCommand(input);
     // console.log("runCommand", input);
+  };
+
+  handleMove = (move) => {
+    const currentPosition = this.state.placement.position;
+    console.log("move", move);
+    if (move === "error") {
+      return;
+    }
+
+    function getKey() {
+      return move[0];
+    }
+
+    function getNewPosition() {
+      return currentPosition[move[0]] + move[1];
+    }
+
+    currentPosition[getKey()] = getNewPosition();
+
+    this.setState({ currentPosition });
   };
 
   handlePlace = (place) => {

@@ -20,48 +20,160 @@ describe("Game board", () => {
 describe("Command verification", () => {
   test("undefined input returns false", () => {
     const input = undefined;
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
   });
 
   test("fails lowercase command", () => {
     const input = "place 0,0,north";
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
     expect(VerifyInput("report")).toBe(false);
   });
   test("REPORT is valid function", () => {
     const input = "REPORT";
-    expect(VerifyInput(input)).toBe(true);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(true);
   });
   test("LEFT is valid function", () => {
     const input = "LEFT";
-    expect(VerifyInput(input)).toBe(true);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(true);
   });
   test("RIGHT is valid function", () => {
     const input = "RIGHT";
-    expect(VerifyInput(input)).toBe(true);
-  });
-  test("MOVE is valid function", () => {
-    const input = "MOVE";
-    expect(VerifyInput(input)).toBe(true);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(true);
   });
   test("fails when co-ordinates are outside border constraints", () => {
     const input = "PLACE 10,0,SOUTH";
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
   });
   test("fails when command is outside border constraints", () => {
     const input = "PLACE 10,0,SOUTH";
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
   });
   test("fails when direction is left out", () => {
     const input = "PLACE 4,3";
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
   });
   test("succeeds when co-ordinates are within border constraints and direction is WEST", () => {
     const input = "PLACE 4,3,WEST";
-    expect(VerifyInput(input)).toBe(true);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(true);
   });
   test("fails if wrong object types are received", () => {
     const input = "PLACE '2','1',EAST";
-    expect(VerifyInput(input)).toBe(false);
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
+  });
+  test("MOVE is invalid if pacman is not placed", () => {
+    const input = "MOVE";
+    const state = {
+      placement: {
+        position: { x: null, y: null },
+        direction: null,
+      },
+      commandHistory: [],
+      placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
+  });
+  test("MOVE is invalid if it will send pacman off the board", () => {
+    const input = "MOVE";
+    const state = {
+      placement: {
+        position: { x: 3, y: 0 },
+        direction: "WEST",
+      },
+      commandHistory: [],
+      placed: true,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
+  });
+  test("MOVE is valid function if placed on the board, not on the edge", () => {
+    const input = "MOVE";
+    const state = {
+      placement: {
+        position: { x: 1, y: 3 },
+        direction: "WEST",
+      },
+      commandHistory: [],
+      placed: true,
+    };
+    expect(VerifyInput(input, state)).toBe(true);
   });
 });
