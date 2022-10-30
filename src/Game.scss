@@ -1,0 +1,61 @@
+$color-main: #8ec5fc;
+
+.Game {
+  &__heading {
+    border-bottom: solid black 1px;
+  }
+
+  &__report {
+    color: black;
+    margin: 18px 0 0;
+    border-radius: 4px;
+    height: 68px;
+  }
+
+  &__list {
+    height: 250px;
+    max-height: 250px;
+    overflow: scroll;
+  }
+
+  label {
+    display: block;
+  }
+
+  button {
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    background: none;
+    color: darken($color-main, 20%);
+    border: 1px solid;
+    letter-spacing: 1px;
+    color: $color-main;
+    border: $color-main 1px solid;
+    transition: 250ms ease-out;
+    &:hover,
+    &:focus {
+      color: #fff;
+      background: $color-main;
+    }
+  }
+
+  input {
+    font-size: 14px;
+    margin: 6px 24px 0 0;
+    border-radius: 4px;
+    padding: 0.75em 1.5em;
+    background: none;
+    border: #e3e3e3 1px solid;
+    transition: border 250ms ease-out;
+    &:focus {
+      border: $color-main 1px solid;
+      outline: none;
+    }
+  }
+
+  .command-history.command-error {
+    color: red;
+  }
+}

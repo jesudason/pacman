@@ -6,6 +6,7 @@ import Place from "./functions/Place";
 import Report from "./functions/Report";
 import Move from "./functions/Move";
 import Turn from "./functions/Turn";
+import "./Game.scss";
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -86,10 +87,14 @@ export default class Game extends React.Component {
       );
     };
     return (
-      <div>
-        <div data-testid="report-field" id="report-field"></div>
+      <div className="Game">
         <Input handleInput={handleInput} />
-        <div data-testid="command-history">
+        <div className="Game__report">
+          <h3 className="Game__heading">Game Report</h3>
+          <div data-testid="report-field" id="report-field"></div>
+        </div>
+        <div data-testid="command-history" className="Game__list">
+          <h3 className="Game__heading">Command History</h3>
           {this.state.commandHistory.map((command, index) => {
             return <CommandRecord key={index} command={command} id={index} />;
           })}

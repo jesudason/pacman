@@ -5,7 +5,7 @@ export default function Report(state) {
   if (state.placed === false) {
     text = "Pacman has not been placed on the grid";
   } else {
-    text = `${position.x},${position.y},${direction}`;
+    text = `Pacman's location is: ${position.x},${position.y},${direction}`;
   }
   return (document.getElementById("report-field").innerHTML = text);
 }
