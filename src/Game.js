@@ -4,24 +4,8 @@ import { VerifyInput } from "./functions/utils";
 import React from "react";
 import Place from "./functions/Place";
 import Report from "./functions/Report";
-
-function Move(state) {
-  const { position, direction } = state.placement;
-
-  if (direction === "NORTH") {
-    return ["x", 1];
-  }
-  if (direction === "SOUTH") {
-    return ["x", -1];
-  }
-  if (direction === "EAST") {
-    return ["y", 1];
-  }
-  if (direction === "WEST") {
-    return ["y", -1];
-  }
-  return "error";
-}
+import Move from "./functions/Move";
+import Turn from "./functions/Turn";
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -38,7 +22,7 @@ export default class Game extends React.Component {
 
   runCommand = (input) => {
     if (input === "MOVE") {
-      const move = Move(this.state);
+      const move = Move(this.state.placement.direction);
       return this.handleMove(move);
     }
 
@@ -46,29 +30,21 @@ export default class Game extends React.Component {
       return Report(this.state);
     }
 
-    if (input === "LEFT") {
-      return;
-    }
-
-    if (input === "RIGHT") {
-      return;
+    if (input === "LEFT" || input === "RIGHT") {
+      let placement = { ...this.state.placement };
+      const newDirection = Turn(input, this.state.placement.direction);
+      placement.direction = newDirection;
+      this.setState({ placement });
     }
 
     if (input.startsWith("PLACE")) {
       const place = Place(input);
       return this.handlePlace(place);
     }
-
-    // splitPlaceCommand(input);
-    // console.log("runCommand", input);
   };
 
   handleMove = (move) => {
     const currentPosition = this.state.placement.position;
-    console.log("move", move);
-    if (move === "error") {
-      return;
-    }
 
     function getKey() {
       return move[0];
@@ -84,18 +60,13 @@ export default class Game extends React.Component {
   };
 
   handlePlace = (place) => {
-    this.setState(
-      {
-        placement: {
-          position: { x: place.position.x, y: place.position.y },
-          direction: place.direction,
-        },
-        placed: true,
+    this.setState({
+      placement: {
+        position: { x: place.position.x, y: place.position.y },
+        direction: place.direction,
       },
-      () => {
-        // console.log(this.state);
-      }
-    );
+      placed: true,
+    });
   };
 
   render() {

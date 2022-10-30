@@ -8,12 +8,9 @@ afterEach(() => {
 
 describe("Game board", () => {
   test("has a command history section", () => {
-    // const input = "place 0,0,north";
     render(<Game />);
-    // render(<Game />);
     const commandElement = screen.getByTestId("command-history");
     expect(commandElement).toBeInTheDocument();
-    // expect(VerifyInput(input)).toBe(false);
   });
 });
 
@@ -56,7 +53,7 @@ describe("Command verification", () => {
     };
     expect(VerifyInput(input, state)).toBe(true);
   });
-  test("LEFT is valid function", () => {
+  test("LEFT is an invalid function if pacman is not placed", () => {
     const input = "LEFT";
     const state = {
       placement: {
@@ -66,9 +63,21 @@ describe("Command verification", () => {
       commandHistory: [],
       placed: false,
     };
+    expect(VerifyInput(input, state)).toBe(false);
+  });
+  test("LEFT is a valid function if pacman is placed", () => {
+    const input = "LEFT";
+    const state = {
+      placement: {
+        position: { x: 3, y: 4 },
+        direction: "NORTH",
+      },
+      commandHistory: [],
+      placed: true,
+    };
     expect(VerifyInput(input, state)).toBe(true);
   });
-  test("RIGHT is valid function", () => {
+  test("RIGHT is an invalid function if pacman is not placed", () => {
     const input = "RIGHT";
     const state = {
       placement: {
@@ -77,6 +86,18 @@ describe("Command verification", () => {
       },
       commandHistory: [],
       placed: false,
+    };
+    expect(VerifyInput(input, state)).toBe(false);
+  });
+  test("RIGHT is a valid function if pacman is placed", () => {
+    const input = "RIGHT";
+    const state = {
+      placement: {
+        position: { x: 1, y: 0 },
+        direction: "SOUTH",
+      },
+      commandHistory: [],
+      placed: true,
     };
     expect(VerifyInput(input, state)).toBe(true);
   });

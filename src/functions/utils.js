@@ -6,8 +6,14 @@ function VerifyInput(input, state) {
     const placement = state.placement;
     const position = placement.position;
     const direction = placement.direction;
-    if (input === "REPORT" || input === "LEFT" || input === "RIGHT") {
+    if (input === "REPORT") {
       validity = true;
+    } else if (input === "LEFT" || input === "RIGHT") {
+      if (state.placed === false) {
+        validity = false;
+      } else {
+        validity = true;
+      }
     } else if (input === "MOVE") {
       if (
         (direction === "NORTH" && position.x < 4) ||
