@@ -1,7 +1,6 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Game from "./Game";
-import { VerifyInput, splitPlaceCommand } from "./Functions";
+import Game from "../../Game";
+import { VerifyInput } from "../utils";
 
 afterEach(() => {
   cleanup();

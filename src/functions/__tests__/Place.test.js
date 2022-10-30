@@ -7,9 +7,9 @@ afterEach(() => {
 
 describe("Place function", () => {
   test("command returns state object", () => {
-    const input = "PLACE 0,0,SOUTH";
+    const input = "PLACE 3,4,SOUTH";
     expect(Place(input)).toEqual({
-      position: { x: 0, y: 0 },
+      position: { x: 3, y: 4 },
       direction: "SOUTH",
     });
   });

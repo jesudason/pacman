@@ -1,19 +1,16 @@
 function VerifyInput(input, state) {
   let validity = false;
-  console.log("state", state);
-  if (
+  // console.log("state", state);
+  if (input && input === "REPORT") {
+    validity = true;
+  } else if (
     input &&
     input.startsWith("PLACE") === false &&
     state &&
     state.placed === false
   ) {
     validity = false;
-  } else if (
-    input === "MOVE" ||
-    input === "REPORT" ||
-    input === "LEFT" ||
-    input === "RIGHT"
-  ) {
+  } else if (input === "MOVE" || input === "LEFT" || input === "RIGHT") {
     validity = true;
   } else if (input && input.startsWith("PLACE")) {
     const inputData = splitPlaceCommand(input);

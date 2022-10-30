@@ -1,28 +1,15 @@
 import Input from "./components/Input";
 import CommandRecord from "./components/CommandRecord";
-import { VerifyInput, splitPlaceCommand } from "./Functions";
+import { VerifyInput } from "./functions/utils";
 import React from "react";
 import Place from "./functions/Place";
-
-function Report(state) {
-  // console.log("state", state);
-
-  const position = state.position;
-  const direction = state.direction;
-  // console.log(position);
-  // return position;
-  document.getElementById(
-    "report-field"
-  ).innerHTML = `${position.x},${position.y},${direction}`;
-
-  return `${position.x},${position.y},${direction}`;
-}
+import Report from "./functions/Report";
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      command: {
+      placement: {
         position: { x: null, y: null },
         direction: null,
       },
@@ -37,7 +24,7 @@ export default class Game extends React.Component {
     }
 
     if (input === "REPORT") {
-      return;
+      return Report(this.state);
     }
 
     if (input === "LEFT") {
@@ -60,7 +47,7 @@ export default class Game extends React.Component {
   handlePlace = (place) => {
     this.setState(
       {
-        command: {
+        placement: {
           position: { x: place.position.x, y: place.position.y },
           direction: place.direction,
         },
@@ -90,6 +77,7 @@ export default class Game extends React.Component {
     };
     return (
       <div>
+        <div data-testid="report-field" id="report-field"></div>
         <Input handleInput={handleInput} />
         <div data-testid="command-history">
           {this.state.commandHistory.map((command, index) => {
