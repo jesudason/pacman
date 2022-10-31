@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Open+Sans:ital,wght@1,300&display=swap");
+$black: #191970;
 
 Body {
   background-color: #8ec5fc;
   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
   background-attachment: fixed;
   font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
 
 h1,
@@ -13,17 +15,22 @@ h3,
 h4,
 h5 {
   font-family: "Nunito Sans", sans-serif;
+  color: $black;
 }
 
 p {
   font-family: "Open Sans", sans-serif;
+  color: $black;
 }
 
 .App {
-  background-color: white;
-  border-radius: 4px;
-  padding: 32px;
   margin: 64px;
+
+  &__container {
+    background-color: white;
+    border-radius: 4px;
+    padding: 32px;
+  }
 
   &__header {
     position: relative;
@@ -34,14 +41,18 @@ p {
       bottom: 6px;
       height: 32px;
       pointer-events: none;
+      filter: invert(14%) sepia(64%) saturate(2257%) hue-rotate(227deg)
+        brightness(86%) contrast(111%);
     }
   }
 }
 
 @media only screen and (min-width: 768px) {
   .App {
-    padding: 48px;
     margin: 100px;
+    &__container {
+      padding: 48px;
+    }
 
     &__header--logo {
       height: 25px;

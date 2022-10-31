@@ -1,12 +1,13 @@
 $color-main: #8ec5fc;
+$black: #191970;
 
 .Game {
   &__heading {
-    border-bottom: solid black 1px;
+    border-bottom: solid $black 1px;
   }
 
   &__report {
-    color: black;
+    color: $black;
     margin: 18px 0 0;
     border-radius: 4px;
     height: 68px;
@@ -20,6 +21,7 @@ $color-main: #8ec5fc;
 
   label {
     display: block;
+    color: $black;
   }
 
   button {
