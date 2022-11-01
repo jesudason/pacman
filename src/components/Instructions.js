@@ -22,7 +22,9 @@ export default function LightboxContent() {
         <li>
           Acceptible command formats:
           <ul>
-            <li>PLACE X,Y,F</li>
+            <li>
+              PLACE X,Y,F (Where F is "NORTH", "SOUTH", "EAST", or "WEST")
+            </li>
             <li>MOVE</li>
             <li>LEFT</li>
             <li>RIGHT</li>

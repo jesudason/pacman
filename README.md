@@ -1,6 +1,6 @@
 # PACMAN SIMULATOR
 
-Play here! https://jesudason.github.io/pacman/
+https://jesudason.github.io/pacman/
 
 ## Game Description
 
@@ -11,10 +11,15 @@ The rules can be read in detail here https://github.com/ie/Code-Challenge-1/
 
 ## How to Play
 
-- Clone this repository https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=cli
-- Run `npm install` to install dependencies
-- Run `npm start` to start the application
-- Run `npm test` to run the tests
+- Visit https://jesudason.github.io/pacman/
+- In the command input field, enter your commands. Valid commands include:
+  - PLACE X,Y,F (Where F is "NORTH", "SOUTH", "EAST", or "WEST")
+  - MOVE
+  - LEFT
+  - RIGHT
+  - REPORT
+- Invalid commands will be recorded in the Command History log, but the moves will be ignored by Pacman.
+- Use the REPORT command to see where Pacman has moved to.
 
 ## Build Notes
 
