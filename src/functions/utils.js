@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 function VerifyInput(input, state) {
   let validity = false;
   if (!input || !state) {
@@ -50,11 +52,28 @@ function VerifyInput(input, state) {
 function splitPlaceCommand(input) {
   const splitCommand = input.split(" ");
 
-  if (splitCommand.length == 2) {
+  if (splitCommand.length === 2) {
     return splitCommand[1].split(",");
   } else {
     return null;
   }
 }
 
-export { VerifyInput, splitPlaceCommand };
+function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+}
+
+export { VerifyInput, splitPlaceCommand, useOnClickOutside };

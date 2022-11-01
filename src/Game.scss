@@ -16,71 +16,7 @@
     }
   }
 
-  &__list {
-    &--content {
-      //   height: 250px;
-      //   overflow: scroll;
-    }
-  }
-
-  label {
-    display: block;
-    color: $primary-color;
-    font-style: italic;
-  }
-
-  button {
-    font-size: 14px;
-    border-radius: 4px;
-    padding: 0.75em 1.5em;
-    cursor: pointer;
-    background: none;
-    color: darken($secondary-color, 5%);
-    border: 1px solid;
-    letter-spacing: 1px;
-    // color: $secondary-color;
-    border: darken($secondary-color, 5%) 1px solid;
-    transition: 250ms ease-out;
-    &:hover,
-    &:focus,
-    &:active {
-      color: #fff;
-      border: darken($secondary-color, 5%);
-      background: $secondary-color;
-    }
-
-    &:focus,
-    &:active {
-      outline: darken($secondary-color, 5%) 1px solid;
-    }
-  }
-
-  input {
-    font-size: 14px;
-    margin: 6px 24px 6px 0;
-    border-radius: 4px;
-    padding: 0.75em 1.5em;
-    background: none;
-    border: $grey 1px solid;
-    transition: border 250ms ease-out;
-    width: 100%;
-
-    &:focus {
-      border: darken($secondary-color, 5%) 1px solid;
-      outline: none;
-    }
-  }
-
   .command-history.command-error {
     color: red;
-  }
-}
-
-@media only screen and (min-width: 400px) {
-  .Game {
-    input {
-      width: auto;
-      max-width: 100%;
-    }
   }
 }

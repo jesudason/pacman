@@ -1,11 +1,7 @@
-import Input from "./components/Input";
-import CommandRecord from "./components/CommandRecord";
-import { VerifyInput } from "./functions/utils";
 import React from "react";
-import Place from "./functions/Place";
-import Report from "./functions/Report";
-import Move from "./functions/Move";
-import Turn from "./functions/Turn";
+import { VerifyInput } from "./functions/utils";
+import { Input, CommandRecord } from "./components/index";
+import { Place, Report, Move, Turn } from "./functions/index";
 import "./Game.scss";
 
 export default class Game extends React.Component {

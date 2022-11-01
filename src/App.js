@@ -1,12 +1,12 @@
 import "./App.scss";
 import Game from "./Game";
 import Pacman from "./assets/pacman_PNG5.png";
-import Footer from "./components/Footer";
+import { Info } from "./components/index";
 
 function App() {
   return (
     <div className="App">
-      <Footer />
+      <Info />
       <div className="App__container">
         <div className="App__header">
           <img src={Pacman} alt="Logo" className="App__header--logo" />

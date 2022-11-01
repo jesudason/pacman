@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Input.scss";
 
 export default function Input(props) {
   const [input, setInput] = useState("");
@@ -10,7 +11,7 @@ export default function Input(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="Input" onSubmit={handleSubmit}>
       <label htmlFor="command-input">Enter your command:</label>
       <input
         id="command-input"
