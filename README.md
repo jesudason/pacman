@@ -25,5 +25,3 @@ https://jestjs.io/docs/tutorial-react
 
 It also uses the CSS preprocessor `Sass`.
 https://sass-lang.com/
-
-## Next Steps
