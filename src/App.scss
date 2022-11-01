@@ -1,61 +1,71 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Open+Sans:ital,wght@1,300&display=swap");
-$black: #191970;
+@import "./global/_typography.scss";
+* {
+  box-sizing: border-box;
+}
 
 Body {
-  background-color: #8ec5fc;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background-color: $secondary-color;
+  background-image: linear-gradient(62deg, $secondary-color 0%, #e0c3fc 100%);
   background-attachment: fixed;
-  font-family: "Open Sans", sans-serif;
   margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Nunito Sans", sans-serif;
-  color: $black;
-}
-
-p {
-  font-family: "Open Sans", sans-serif;
-  color: $black;
-}
-
 .App {
-  margin: 64px;
-
   &__container {
+    box-shadow: 0 0 5px rgba(25, 25, 25, 0.25);
     background-color: white;
     border-radius: 4px;
     padding: 32px;
+    min-height: 600px;
+    overflow: scroll;
+    margin: 64px 32px;
   }
 
   &__header {
     position: relative;
 
+    h1 {
+      margin-top: 0;
+      margin-right: 48px;
+    }
+
     &--logo {
       position: absolute;
       right: 0;
-      bottom: 6px;
+      top: 6px;
       height: 32px;
       pointer-events: none;
       filter: invert(14%) sepia(64%) saturate(2257%) hue-rotate(227deg)
-        brightness(86%) contrast(111%);
+        brightness(86%) contrast(111%); // thanks to https://codepen.io/sosuke/pen/Pjoqqp
     }
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
   .App {
-    margin: 100px;
     &__container {
+      margin: 64px;
       padding: 48px;
+      min-height: 700px;
     }
 
     &__header--logo {
       height: 25px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .App {
+    // margin: 100px;
+
+    &__container {
+      height: calc(100vh - 200px);
+      max-height: calc(100vh - 200px);
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: 100px;
+      margin-bottom: 100px;
     }
   }
 }

@@ -1,27 +1,32 @@
-$color-main: #8ec5fc;
-$black: #191970;
+@import "./global/_typography.scss";
 
 .Game {
   &__heading {
-    border-bottom: solid $black 1px;
+    border-bottom: solid $primary-color 1px;
   }
 
   &__report {
-    color: $black;
+    color: $primary-color;
     margin: 18px 0 0;
     border-radius: 4px;
     height: 68px;
+
+    p {
+      padding-bottom: 24px;
+    }
   }
 
   &__list {
-    height: 250px;
-    max-height: 250px;
-    overflow: scroll;
+    &--content {
+      //   height: 250px;
+      //   overflow: scroll;
+    }
   }
 
   label {
     display: block;
-    color: $black;
+    color: $primary-color;
+    font-style: italic;
   }
 
   button {
@@ -30,34 +35,52 @@ $black: #191970;
     padding: 0.75em 1.5em;
     cursor: pointer;
     background: none;
-    color: darken($color-main, 20%);
+    color: darken($secondary-color, 5%);
     border: 1px solid;
     letter-spacing: 1px;
-    color: $color-main;
-    border: $color-main 1px solid;
+    // color: $secondary-color;
+    border: darken($secondary-color, 5%) 1px solid;
     transition: 250ms ease-out;
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       color: #fff;
-      background: $color-main;
+      border: darken($secondary-color, 5%);
+      background: $secondary-color;
+    }
+
+    &:focus,
+    &:active {
+      outline: darken($secondary-color, 5%) 1px solid;
     }
   }
 
   input {
     font-size: 14px;
-    margin: 6px 24px 0 0;
+    margin: 6px 24px 6px 0;
     border-radius: 4px;
     padding: 0.75em 1.5em;
     background: none;
-    border: #e3e3e3 1px solid;
+    border: $grey 1px solid;
     transition: border 250ms ease-out;
+    width: 100%;
+
     &:focus {
-      border: $color-main 1px solid;
+      border: darken($secondary-color, 5%) 1px solid;
       outline: none;
     }
   }
 
   .command-history.command-error {
     color: red;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .Game {
+    input {
+      width: auto;
+      max-width: 100%;
+    }
   }
 }

@@ -38,7 +38,36 @@ export default function Footer() {
             >
               X
             </span>
-            LIGHTBOX
+            <h2>Pacman Simulator</h2>
+            <p>
+              This application is a simulation of Pacman moving in a 5x5 unit
+              grid. Enter commands to move Pacman around the grid, and report
+              its new location.
+            </p>
+
+            <p>Rules:</p>
+            <ul>
+              <li>
+                The first valid command is a PLACE command, after that, any
+                sequence of commands may be issued, in any order, including
+                another PLACE command. All commands prior to an initial PLACE
+                command are ignored.
+              </li>
+              <li>
+                This application is case sensitive. Pacman will only respond to
+                uppercase commands, writted in the correct format.
+              </li>
+              <li>
+                Acceptible command formats:
+                <ul>
+                  <li>PLACE X,Y,F</li>
+                  <li>MOVE</li>
+                  <li>LEFT</li>
+                  <li>RIGHT</li>
+                  <li>REPORT</li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       ) : (
@@ -47,16 +76,19 @@ export default function Footer() {
             href="https://github.com/jesudason/pacman"
             className="Footer__icon github"
             tabIndex="0"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <FaGithub />
+            <FaGithub size={24} />
           </a>
-          <span
+          <button
             className="Footer__icon info"
             onClick={() => setShowModal(true)}
             tabIndex="0"
+            type="button"
           >
-            <FaInfo />
-          </span>
+            <FaInfo size={24} />
+          </button>
         </div>
       )}
     </div>

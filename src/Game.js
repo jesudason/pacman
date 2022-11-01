@@ -91,13 +91,16 @@ export default class Game extends React.Component {
         <Input handleInput={handleInput} />
         <div className="Game__report">
           <h3 className="Game__heading">Game Report</h3>
-          <div data-testid="report-field" id="report-field"></div>
+          <p data-testid="report-field" id="report-field"></p>
         </div>
+
         <div data-testid="command-history" className="Game__list">
           <h3 className="Game__heading">Command History</h3>
-          {this.state.commandHistory.map((command, index) => {
-            return <CommandRecord key={index} command={command} id={index} />;
-          })}
+          <div className="Game__list--content">
+            {this.state.commandHistory.map((command, index) => {
+              return <CommandRecord key={index} command={command} id={index} />;
+            })}
+          </div>
         </div>
       </div>
     );
