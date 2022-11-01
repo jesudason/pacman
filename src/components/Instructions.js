@@ -17,7 +17,7 @@ export default function LightboxContent() {
         </li>
         <li>
           This application is case sensitive. Pacman will only respond to
-          uppercase commands, writted in the correct format.
+          uppercase commands, written in the correct format.
         </li>
         <li>
           Acceptible command formats:
